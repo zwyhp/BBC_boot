@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.bbc.message.dao.TmessageMapper">
+    <insert id="addTmessage" parameterType="com.boot.bbc.message.domain.Tmessage">
+        insert  into Tmessage values(default,#{guestName},#{messageContent},#{messageTime},#{reply},#{isPass},#{messKind},#{messageTitle},#{clickNumber},#{isTop},#{lastCommentTime})
+    </insert>
+
+    <delete id="deleteTmessageById" parameterType="int">
+        delete from Tmessage where messageId = #{messageId}
+    </delete>
+
+    <update id="updateTmessageById" parameterType="com.boot.bbc.message.domain.Tmessage">
+        update Tmessage set guestName = #{guestName},messageContent = #{messageContent},
+        messageTime = #{messageTime},reply = #{reply},isPass = #{isPass},
+        messKind = #{messKind},messageTitle = #{messageTitle},clickNumber = #{clickNumber},
+        isTop = #{isTop},lastCommentTime = #{lastCommentTime} where messageId = #{messageId}
+    </update>
+
+    <update id="checkMessage" parameterType="int">
+        update Tmessage set isPass = 1 where MessageId = #{messageId}
+    </update>
+    <update id="cancelCheckMessage" parameterType="int">
+        update Tmessage set isPass = 0 where MessageId = #{messageId}
+    </update>
+
+    <update id="stickMessage" parameterType="int">
+        update Tmessage set isTop = 1 where MessageId = #{messageId}
+    </update>
+    <update id="cancelStickMessage" parameterType="int">
+        update Tmessage set isTop = 0 where MessageId = #{messageId}
+    </update>
+    <update id="addClickNumber" parameterType="int">
+        update Tmessage set ClickNumber = ClickNumber + 1 where MessageId = #{messageId}
+    </update>
+
+    <select id="queryTmessageByPage" parameterType="java.util.Map" resultType="com.boot.bbc.message.domain.Tmessage">
+        select * from Tmessage
+        <where>
+            <if test="query != null and query != ''">
+                AND   MessageTitle  like concat("%",#{query},"%")
+            </if>
+            <if test="plate != null and plate != ''">
+                AND   MessKind  = #{plate}
+            </if>
+        </where>
+        order by istop desc, MessageTime desc
+    </select>
+
+    <select id="queryTmessageTop10" parameterType="String" resultType="com.boot.bbc.message.domain.Tmessage">
+        select * from Tmessage
+        <where>
+            <if test="query != null and query != ''">
+                AND   MessKind  = #{query}
+            </if>
+        </where>
+        order by ClickNumber desc
+    </select>
+
+    <select id="queryNotPassMessageByPage"  parameterType="java.util.Map" resultType="com.boot.bbc.message.domain.Tmessage">
+        select * from Tmessage as t
+        <where>
+            <if test="query != null and query != ''">
+              AND   MessageTitle  like concat("%",#{query},"%")
+            </if>
+            <if test="plate != null and plate != ''">
+                AND   MessKind  = #{plate}
+            </if>
+        </where>
+            order by (CASE t.IsPass WHEN 0 THEN 10 WHEN 1 THEN 20 ELSE 30 END) ASC,  t.MessageTime  desc
+    </select>
+
+    <select id="queryTmessageById" parameterType="int" resultType="com.boot.bbc.message.domain.Tmessage">
+        select * from Tmessage where messageId = #{tmessageId}
+    </select>
+
+</mapper>
