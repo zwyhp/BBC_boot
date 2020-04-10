@@ -20,7 +20,7 @@ public class Tmessage {
     @NotEmpty(message = VerifyError.MESS_KIND_OWNER_NOT_NULL)
     private String messKind;
     @NotEmpty(message = VerifyError.MESS_TITLE_NOT_NULL)
-    @Size(min = 8 ,max = 30 , message = VerifyError.MESS_TITLE_SIZE)
+    @Size(min = 4 ,max = 15 , message = VerifyError.MESS_TITLE_SIZE)
     private String messageTitle;
     private int clickNumber;
     private int isTop;

@@ -7,7 +7,7 @@ import com.boot.bbc.util.parameterverify.VerifyError;
 public class Tuser {
     private int userId;
     @NotEmpty(message = VerifyError.USER_NAME_NOT_NULL)
-    @Size(min = 5 ,max = 20, message = VerifyError.USER_NAME_SIZE)
+    @Size(min = 5 ,max = 10, message = VerifyError.USER_NAME_SIZE)
     private String userName;
     @NotEmpty(message = VerifyError.USER_PWD_NOT_NULL)
     @Size(min = 6 ,max = 16, message = VerifyError.PWD_NAME_SIZE)

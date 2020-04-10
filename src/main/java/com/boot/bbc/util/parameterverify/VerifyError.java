@@ -19,7 +19,7 @@ public class VerifyError {
     public static final String CATEGORY_OWNER_NOT_NULL = "版主不能为空";
 
     public static final String MESS_CONTENT_NOT_NULL = "帖子内容不能为空";
-    public static final String MESS_CONTENT_SIZE = "帖子内容最少为10字";
+    public static final String MESS_CONTENT_SIZE = "帖子内容最少为20字";
     public static final String MESS_KIND_OWNER_NOT_NULL = "帖子板块不能为空";
     public static final String MESS_TITLE_NOT_NULL = "帖子标题不能为空";
     public static final String MESS_TITLE_SIZE = "帖子标题必须在4-15字之间";
@@ -27,7 +27,7 @@ public class VerifyError {
 
     public static final String COMMENT_NOT_NULL = "回复内容不能为空";
 
-    public static final String COMMENT_SIZE = "回复内容最少不低于5字";
+    public static final String COMMENT_SIZE = "回复内容最少不低于10字";
 
 
 
