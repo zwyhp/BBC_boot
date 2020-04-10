@@ -24,8 +24,8 @@ public class Tcomment {
 
     }
 
-    public Tcomment(int commentIdl, String commentContent, LocalDateTime commentTime, int messageId, String commentUser) {
-        this.commentId = commentIdl;
+    public Tcomment(int commentId, String commentContent, LocalDateTime commentTime, int messageId, String commentUser) {
+        this.commentId = commentId;
         this.commentContent = commentContent;
         this.commentTime = commentTime;
         this.messageId = messageId;
